@@ -55,7 +55,7 @@
         </button>
   
         <div class="text-center">
-            <spam>No tienes una cuenta?</spam>
+            <spam>¿No tienes una cuenta?</spam>
           <RouterLink to="/register">
               <a 
               href="#" 
