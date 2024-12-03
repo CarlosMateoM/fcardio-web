@@ -1,7 +1,7 @@
 <template>
     <main class="flex w-full min-h-screen justify-center items-center px-4 bg-[url('/backgroundCredentials.jpg')] bg-no-repeat bg-cover bg-fixed relative">
       <div class="absolute inset-0 bg-black/30 backdrop-blur-3xl"></div>
-      <form 
+      <form @submit.prevent="handleSubmit"
         class="w-full max-w-md p-8 rounded-xl shadow-lg bg-white/80 backdrop-blur-md border border-white/20 flex flex-col gap-6 relative z-10"
       >
         <div class="text-center">
@@ -18,6 +18,7 @@
               Nombre
             </label>
             <input 
+              v-model="form.name"
               type="text" 
               id="nombre"
               class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-300 bg-white/80"
@@ -35,6 +36,7 @@
             Correo electrónico
           </label>
           <input 
+            v-model="form.email"
             type="email" 
             id="email"
             class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-300 bg-white/80"
@@ -51,6 +53,7 @@
           </label>
           <div class="relative">
             <input 
+              v-model="form.password"
               type="password"
               id="password"
               class="w-full p-3 border border-gray-200 rounded-lg pr-12 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-300 bg-white/80"
@@ -74,6 +77,7 @@
           </label>
           <div class="relative">
             <input 
+              v-model="form.confirm_password"
               type="password"
               id="confirm-password"
               class="w-full p-3 border border-gray-200 rounded-lg pr-12 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-300 bg-white/80"
@@ -113,4 +117,26 @@
     </main>
   </template>
 <script setup>
+import { ref } from 'vue';
+import useAuthStore from '@/stores/auth';
+
+
+const form = ref({
+  name: '',
+  email: '',
+  password: '',
+  confirm_password: ''
+});
+
+const { 
+  register
+} = useAuthStore();
+
+const handleSubmit = async () => {
+  
+  const response = await register(form.value);
+  console.log(response);
+
+
+};
 </script>

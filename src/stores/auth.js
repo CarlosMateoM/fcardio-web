@@ -20,6 +20,12 @@ export const useAuthStore = defineStore('auth', () => {
         return response;
     };
 
+    const register = async (payload) => {
+        const response = await api.post('/register', payload);
+        router.push({name: 'login'});
+        return response;
+    }
+
     const fetchUser = async () => {
         const response = await api.get('/user');
         user.value = response.data;
@@ -30,6 +36,7 @@ export const useAuthStore = defineStore('auth', () => {
         user,
         login,
         logout,
+        register,
         fetchUser
     };
 });
