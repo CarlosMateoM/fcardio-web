@@ -2,6 +2,7 @@
     <main class="flex w-full min-h-screen justify-center items-center px-4 bg-[url('/backgroundCredentials.jpg')] bg-no-repeat bg-cover bg-fixed relative">
       <div class="absolute inset-0 bg-black/30 backdrop-blur-3xl"></div>
       <form 
+        @submit.prevent="handleSubmit"
         class="w-full max-w-md p-8 rounded-xl shadow-lg bg-white/80 backdrop-blur-md border border-white/20 flex flex-col gap-6 relative z-10"
       >
         <div class="text-center">
@@ -16,7 +17,8 @@
           >
             Correo electrónico
           </label>
-          <input 
+          <input
+            v-model="form.email" 
             type="email" 
             id="email"
             class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-300 bg-white/80"
@@ -33,17 +35,12 @@
           </label>
           <div class="relative">
             <input 
+              v-model="form.password"
               type="password"
               id="password"
               class="w-full p-3 border border-gray-200 rounded-lg pr-12 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-300 bg-white/80"
               required 
             />
-            <button
-              type="button"
-              class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600 transition-colors"
-            >
-              <!-- You can add an eye icon here if using Vue with icon library -->
-            </button>
           </div>
         </div>
   
@@ -55,7 +52,7 @@
         </button>
   
         <div class="text-center">
-            <spam>¿No tienes una cuenta?</spam>
+            <span>¿No tienes una cuenta?</span>
           <RouterLink to="/register">
               <a 
               href="#" 
@@ -69,4 +66,19 @@
     </main>
   </template>
 <script setup>
+import { ref } from 'vue';
+import useAuthStore from '@/stores/auth';
+
+const {
+    login } = useAuthStore();
+    
+    const form = ref({
+        email: '',
+        password: ''
+    })
+
+    const handleSubmit = async () => {
+        const response = await login(form.value);
+        console.log(response);
+    }
 </script>
