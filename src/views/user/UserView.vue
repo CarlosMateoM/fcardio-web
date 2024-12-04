@@ -25,14 +25,14 @@
                 <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Contraseña</label>
                 <input v-model="userForm.password" type="password" id="password"
                     class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white"
-                    required />
+                     />
             </div>
             <div>
                 <label for="confirm-password" class="block text-sm font-medium text-gray-700 mb-2">Confirmar
                     Contraseña</label>
                 <input v-model="userForm.confirm_password" type="password" id="confirm-password"
                     class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white"
-                    required />
+                     />
             </div>
             <div class="mt-2">
                 <button type="submit" class="flex w-full md:w-auto   py-3 ">
@@ -115,7 +115,7 @@
             </div>
             <!-- Botón de Envío -->
             <div class="mt-2">
-                <button type="submit" class="flex w-full md:w-auto py-3 ">
+                <button @click.prevent="updateMedicalProfileHandleSubmit" type="submit" class="flex w-full md:w-auto py-3 ">
                     <UpdateIcon class="mr-2 w-4 text-blue-500" />
                     Actualizar
                 </button>
@@ -155,27 +155,34 @@
 
     const {
         fetchUser,
-        updateUser
+        updateUser,
     } = useAuthStore();
 
     const {
         fetchMedicalProfile,
-        updateMedicalProfile
+        updateMedicalProfile,
     } = useMedicalProfileStore();
 
     const updateUserHandleSubmit = async () => {
-        const response = await updateUser();
+        const payload = userForm.value
+        const response = await updateUser(payload);
+
     }
 
     const updateMedicalProfileHandleSubmit = async () => {
-        const response = await updateMedicalProfile();
+        const payload = medicalProfileForm.value
+        const response = await updateMedicalProfile(payload.id, payload);
     }
 
+    
+
+    
     onMounted(async () => {
         const response = await fetchUser();
         const id  = response.data.data.user.medical_profile.id;
         userForm.value = response.data.data.user;
+        console.log(userForm.value);
         const medicalProfileResponse  = await fetchMedicalProfile(id);
-
+        medicalProfileForm.value = medicalProfileResponse
     });
 </script>

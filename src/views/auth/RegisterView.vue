@@ -34,7 +34,7 @@
       <div class="relative">
         <input v-model="form.password" type="password" id="password"
           class="w-full p-3 border border-gray-200 rounded-lg pr-12 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-300 bg-white/80"
-          required />
+           />
         <button type="button"
           class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600 transition-colors">
           <!-- Icono de ojo -->
@@ -49,7 +49,7 @@
       <div class="relative">
         <input v-model="form.confirm_password" type="password" id="confirm-password"
           class="w-full p-3 border border-gray-200 rounded-lg pr-12 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-300 bg-white/80"
-          required />
+           />
         <button type="button"
           class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600 transition-colors">
           <!-- Icono de ojo -->

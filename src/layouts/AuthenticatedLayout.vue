@@ -25,6 +25,12 @@
                                 <span>Perfil</span>
                             </RouterLink>
                         </li>
+                        <li>
+                            <button @click="logout"  >
+                                <PowerIcon class="w-4 text-blue-700" />
+                                Salir
+                            </button>
+                        </li>
                     </ul>
                 </nav>
             </header>
@@ -37,5 +43,11 @@
 <script setup>
 import HealthIcon from '@/components/icons/HealthIcon.vue';
 import HomeIcon from '@/components/icons/HomeIcon.vue';
+import PowerIcon from '@/components/icons/PowerIcon.vue';
 import UserIcon from '@/components/icons/UserIcon.vue';
+import useAuthStore from '@/stores/auth';
+
+const {
+    logout
+} = useAuthStore();
 </script>

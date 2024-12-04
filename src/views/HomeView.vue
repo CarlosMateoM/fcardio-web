@@ -1,5 +1,5 @@
 <template>
-    
+
     <main class="p-2 md:p-4 ">
 
         <section>
@@ -11,8 +11,11 @@
             <p class="text-gray-700 text-md mb-2 italic ">
                 Bienvenido a tu panel de control
             </p>
-            <p class="text-gray-500 text-xs ">
+            <p v-if="lastActivity" class="text-gray-500 text-xs ">
                 El último registro de actividad fue el {{ format(lastActivity.created_at) }}
+            </p>
+            <p v-else class="text-gray-500 text-xs ">
+                No tienes registros de actividad
             </p>
 
         </section>
@@ -69,20 +72,25 @@
 
 
     const rfc = computed(() => {
+        if (!lastActivity.value) return 0;
         return lastActivity.value.max_heart_rate - lastActivity.value.resting_heart_rate;
     });
 
     const irc = computed(() => {
+        if (!lastActivity.value) return 0;
         return lastActivity.value.max_heart_rate - lastActivity.value.recovering_heart_rate;
     });
 
 
     const intensityZones = [0.5, 0.6, 0.7, 0.8, 0.9];
-    const fcTraining = computed(() =>
-        intensityZones.map((intensity) =>
+    const fcTraining = computed(() => {
+
+        if (!lastActivity.value) return [];
+     
+        return intensityZones.map((intensity) =>
             Math.round(rfc.value * intensity + lastActivity.value.resting_heart_rate)
         )
-    );
+    });
 
 
     const canvasRef = ref(null);
@@ -91,7 +99,7 @@
 
         if (canvasRef.value) {
             const ctx = canvasRef.value.getContext("2d");
-
+        
             new Chart(ctx, {
                 type: "pie",
                 data: {
