@@ -3,15 +3,19 @@
       
       <div class="w-full md:w-1/3 p-6 md:p-12">
         <div class="flex flex-col items-start mb-8">
-          <button 
-            @click="goBack" 
+
+
+          <RouterLink 
+            :to="{ name: 'activity.tracking' }"
             class="flex items-center text-gray-600 hover:text-blue-600 transition-colors mb-4"
           >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
             Regresar
-          </button>
+        </RouterLink>
+
+
           <h1 class="text-4xl font-bold text-blue-600">FCardio</h1>
         </div>
         <p class="text-xl text-gray-700 mb-4">Registro de Ejercicio Cardiovascular</p>
