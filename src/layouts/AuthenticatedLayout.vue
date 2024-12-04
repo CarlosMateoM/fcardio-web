@@ -20,7 +20,7 @@
                             </RouterLink>
                         </li>
                         <li>
-                            <RouterLink :to="{ name: 'home' }">
+                            <RouterLink :to="{ name: 'profile' }">
                                 <UserIcon class="w-4 text-blue-700" />
                                 <span>Perfil</span>
                             </RouterLink>

@@ -156,10 +156,11 @@
 <script setup>
 import { ref } from 'vue';
 import useActivityTracking from '@/stores/activityTracking.js';
+import router from '@/router';
 
 const { 
     addActivity 
-                } = useActivityTracking();
+} = useActivityTracking();
 
 const form = ref({
   date: '',
@@ -174,6 +175,8 @@ const form = ref({
 
 const handleSubmit = async () => {
     const response = await addActivity(form.value);
-    console.log(response);
+    if(response.status === 201) {
+        router.push({name: 'activity.tracking'});
+    }
 }
 </script>

@@ -1,5 +1,6 @@
 <template>
-    <main class="p-2 md:p-4">
+    
+    <main class="p-2 md:p-4 ">
 
         <section>
 
@@ -42,6 +43,7 @@
                 </tr>
             </table>
         </section>
+
         <section class="mt-6 overflow-x-auto ">
             <h2 class="text-xl mb-2 font-semibold">Índices Cardíacos</h2>
             <p class="text-gray-500 text-xs mb-8">

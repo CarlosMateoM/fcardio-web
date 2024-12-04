@@ -45,6 +45,14 @@ const router = createRouter({
       }
     },
     {
+      path: '/profile',
+      name: 'profile',
+      component: () => import('../views/user/UserView.vue'),
+      meta: {
+        layout: 'AuthenticatedLayout'
+      }
+    },
+    {
       path: '/medicalProfile',
       name: 'medicalProfile',
       component: () => import('../views/user/MedicalProfile.vue'),
