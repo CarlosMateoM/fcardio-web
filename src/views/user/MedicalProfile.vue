@@ -187,6 +187,7 @@
 <script setup>
 import { ref } from 'vue';
 import useMedicalProfileStore from '@/stores/medicalProfile';
+import router from '@/router';
 
 const { createMedicalProfile } = useMedicalProfileStore();
 
@@ -204,6 +205,8 @@ const form = ref({
 const handleSubmit = async () => {
     console.log(form.value);
     const response = await createMedicalProfile(form.value);
-    console.log(response);
+    if (response.status === 201) {
+      router.push({name: 'home'});
+    }
 };
 </script>

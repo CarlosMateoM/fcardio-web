@@ -10,6 +10,11 @@ const router = createRouter({
       component: () => import('../views/auth/LoginView.vue'),
     },
     {
+      path: '/home',
+      name: 'home',
+      component: () => import('../views/HomeView.vue'),
+    },
+    {
       path: '/register',
       name: 'register',
       component: () => import('../views/auth/RegisterView.vue'),
@@ -17,22 +22,48 @@ const router = createRouter({
     {
       path: '/medicalProfile',
       name: 'medicalProfile',
-      component: () => import('../user/MedicalProfile.vue')
+      component: () => import('../views/user/MedicalProfile.vue')
     }
   ],
 })
 
-router.beforeEach((to, from, next) => {
 
-  const auth = useAuthStore();
+router.beforeEach(async (to, from, next) => {
+ 
+  const excludeRoutes = ['login', 'register'];
+ 
+  const hasToken = localStorage.getItem('token') !== null;
+  
+  if (hasToken) {
 
-  if (to.name !== 'login' && !localStorage.getItem('token')) {
-    next({ name: 'login' })
-  } else if(to.name === 'login' && localStorage.getItem('token')) {
-    next({ name: 'inicio' })
+    const auth = useAuthStore();
+
+    if (hasToken && auth.user === null) {
+      await auth.fetchUser();
+    }
+     
+    if (auth.user.medical_profile === null && to.name !== 'medicalProfile') {
+      next({ name: 'medicalProfile' });
+      return;
+    }
+
+    
+    if (excludeRoutes.includes(to.name)) {
+      next({ name: 'home' });
+      return;
+    }
+
+   
   } else {
-    next()
+    
+    if (!excludeRoutes.includes(to.name)) {
+      next({ name: 'login' });
+      return;
+    }
   }
-})
+
+  
+  next();
+});
 
 export default router
