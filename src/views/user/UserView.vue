@@ -176,6 +176,7 @@
         const id  = response.data.data.user.medical_profile.id;
         userForm.value = response.data.data.user;
         const medicalProfileResponse  = await fetchMedicalProfile(id);
+        
 
     });
 </script>

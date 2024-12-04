@@ -78,7 +78,7 @@ router.beforeEach(async (to, from, next) => {
       await auth.fetchUser();
     }
      
-    if (auth.user.medical_profile === null && to.name !== 'medicalProfile') {
+    if (auth.user.user.medical_profile === null && to.name !== 'medicalProfile') {
       next({ name: 'medicalProfile' });
       return;
     }
