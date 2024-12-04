@@ -28,6 +28,11 @@ export const useAuthStore = defineStore('auth', () => {
         return response;
     }
 
+    const updateUser = async (payload) => { 
+        const response = await api.post('/user', payload);
+        return response;
+    }
+
     const fetchUser = async () => {
         try {
 
@@ -38,7 +43,6 @@ export const useAuthStore = defineStore('auth', () => {
             router.push({name: 'login'});
             return error;
         }
-      
      
     }
     
@@ -47,7 +51,8 @@ export const useAuthStore = defineStore('auth', () => {
         login,
         logout,
         register,
-        fetchUser
+        fetchUser,
+        updateUser
     };
 });
 

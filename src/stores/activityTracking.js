@@ -6,9 +6,10 @@ export const useActivityTracking = defineStore('activityTracking', () => {
     const activities = ref({});
 
 
-    const fetchActivity = async (idActivity) => {
-        const response = await api.get(`/activity-trackings/${idActivity}`)
+    const fetchActivity = async () => {
+        const response = await api.get(`/activity-trackings`)
         activities.value = response.data.data;
+        return response;
     }
 
     const addActivity = async (payload) => {
