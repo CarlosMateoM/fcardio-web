@@ -8,7 +8,7 @@ export const useMedicalProfileStore = defineStore('medicalProfile', () => {
 
     const fetchMedicalProfile = async (idMedialProfile) => {
         const response = await api.get(`/medical-profiles/${idMedialProfile}`);
-        medicalProfile.value = response.data;
+        medicalProfile.value = response.data.data;
     }
 
     const createMedicalProfile = async (payload) => {
