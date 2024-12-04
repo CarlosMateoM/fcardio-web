@@ -69,4 +69,17 @@
     </main>
   </template>
 <script setup>
+import { useAuthStore } from '@/stores/auth';
+
+const {
+    login } = useAuthStore();
+    
+    const form = ref({
+        email: '',
+        password: ''
+    })
+
+    const handleSubmit = async () => {
+        const response = await login(form.value);
+    }
 </script>
