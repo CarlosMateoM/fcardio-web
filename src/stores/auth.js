@@ -9,8 +9,7 @@ export const useAuthStore = defineStore('auth', () => {
     
     const login = async (payload) => {
         const response = await api.post('/login', payload);
-        console.log(response);
-        localStorage.setItem('token', JSON.stringify(response.data.access_token));
+        localStorage.setItem('token', response.data.access_token);
         router.push({name: 'home'});
         return response;
     };
