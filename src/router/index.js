@@ -1,3 +1,4 @@
+import useAuthStore from '@/stores/auth'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -14,6 +15,19 @@ const router = createRouter({
       component: () => import('../views/auth/RegisterView.vue'),
     },
   ],
+})
+
+router.beforeEach((to, from, next) => {
+
+  const auth = useAuthStore();
+
+  if (to.name !== 'login' && !localStorage.getItem('token')) {
+    next({ name: 'login' })
+  } else if(to.name === 'login' && localStorage.getItem('token')) {
+    next({ name: 'inicio' })
+  } else {
+    next()
+  }
 })
 
 export default router
