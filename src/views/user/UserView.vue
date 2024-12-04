@@ -25,14 +25,14 @@
                 <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Contraseña</label>
                 <input v-model="userForm.password" type="password" id="password"
                     class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white"
-                    required />
+                     />
             </div>
             <div>
                 <label for="confirm-password" class="block text-sm font-medium text-gray-700 mb-2">Confirmar
                     Contraseña</label>
                 <input v-model="userForm.confirm_password" type="password" id="confirm-password"
                     class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white"
-                    required />
+                     />
             </div>
             <div class="mt-2">
                 <button type="submit" class="flex w-full md:w-auto   py-3 ">
