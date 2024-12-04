@@ -16,7 +16,8 @@
           >
             Correo electrónico
           </label>
-          <input 
+          <input
+            v-model="form.email" 
             type="email" 
             id="email"
             class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-300 bg-white/80"
@@ -33,17 +34,12 @@
           </label>
           <div class="relative">
             <input 
+              v-model="form.password"
               type="password"
               id="password"
               class="w-full p-3 border border-gray-200 rounded-lg pr-12 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-300 bg-white/80"
               required 
             />
-            <button
-              type="button"
-              class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600 transition-colors"
-            >
-              <!-- You can add an eye icon here if using Vue with icon library -->
-            </button>
           </div>
         </div>
   
@@ -55,7 +51,7 @@
         </button>
   
         <div class="text-center">
-            <spam>¿No tienes una cuenta?</spam>
+            <span>¿No tienes una cuenta?</span>
           <RouterLink to="/register">
               <a 
               href="#" 
@@ -65,10 +61,11 @@
             </a>
           </RouterLink>
         </div>
-      </form>
+      </form @submit.prevent="handleSubmit">
     </main>
   </template>
 <script setup>
+import { ref } from 'vue';
 import { useAuthStore } from '@/stores/auth';
 
 const {
@@ -80,6 +77,7 @@ const {
     })
 
     const handleSubmit = async () => {
+        console.log("accion del boton")
         const response = await login(form.value);
     }
 </script>
