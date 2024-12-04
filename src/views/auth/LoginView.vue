@@ -1,9 +1,5 @@
 <template>
-  <main
-    class="flex w-full min-h-screen justify-center items-center px-4 bg-[url('/backgroundCredentials.jpg')] bg-no-repeat bg-cover bg-fixed relative">
-    <div class="absolute inset-0 bg-black/30 backdrop-blur-3xl"></div>
-    <form @submit.prevent="handleSubmit"
-      class="w-full max-w-md p-8 rounded-xl shadow-lg bg-white/80 backdrop-blur-md border border-white/20 flex flex-col gap-6 relative z-10">
+    <form @submit.prevent="handleSubmit" class="w-full max-w-md p-8 rounded-xl shadow-lg bg-white/80 backdrop-blur-md border border-white/20 flex flex-col gap-6 relative z-10">
       <div class="text-center">
         <h1 class="text-3xl font-bold text-blue-600 mb-2">FCardio</h1>
         <p class="text-gray-500 text-sm">Inicio de sesión</p>
@@ -43,7 +39,6 @@
         </RouterLink>
       </div>
     </form>
-  </main>
 </template>
 <script setup>
   import { ref } from 'vue';

@@ -8,21 +8,49 @@ const router = createRouter({
       path: '/',
       name: 'login',
       component: () => import('../views/auth/LoginView.vue'),
-    },
-    {
-      path: '/home',
-      name: 'home',
-      component: () => import('../views/HomeView.vue'),
+      meta: {
+        layout: 'GuestLayout'
+      }
     },
     {
       path: '/register',
       name: 'register',
       component: () => import('../views/auth/RegisterView.vue'),
+      meta: {
+        layout: 'GuestLayout'
+      }
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: () => import('../views/HomeView.vue'),
+      meta: {
+        layout: 'AuthenticatedLayout'
+      }
+    },
+    {
+      path: '/rutinas',
+      name: 'activity.tracking',
+      component: () => import('../views/activityTracking/activitiesTrackingView.vue'),
+      meta: {
+        layout: 'AuthenticatedLayout'
+      }
+    },
+    {
+      path: '/rutinas/nueva',
+      name: 'activity.tracking.new',
+      component: () => import('../views/activityTracking/activityTrackingView.vue'),
+      meta: {
+        layout: 'AuthenticatedLayout'
+      }
     },
     {
       path: '/medicalProfile',
       name: 'medicalProfile',
-      component: () => import('../views/user/MedicalProfile.vue')
+      component: () => import('../views/user/MedicalProfile.vue'),
+      meta: {
+        layout: 'AuthenticatedLayout'
+      }
     }
   ],
 })
