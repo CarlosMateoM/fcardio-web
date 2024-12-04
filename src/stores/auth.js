@@ -8,8 +8,9 @@ export const useAuthStore = defineStore('auth', () => {
     const user = ref(null);
     
     const login = async (payload) => {
-        console.log("hola desde el metodo login");
-        const response = await api.post('/login');
+        const response = await api.post('/login', payload);
+        console.log(response);
+        localStorage.setItem('token', JSON.stringify(response.data.access_token));
         router.push({name: 'home'});
         return response;
     };
