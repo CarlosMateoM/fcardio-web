@@ -1,13 +1,18 @@
 <template>
-    <main class="flex w-full min-h-screen justify-center items-center px-4 bg-[url('/backgroundCredentials.jpg')] bg-no-repeat bg-cover bg-fixed relative">
-      <div class="absolute inset-0 bg-black/30 backdrop-blur-3xl"></div>
       <form 
         @submit.prevent="handleSubmit"
-        class="w-full max-w-5xl p-8 rounded-xl shadow-lg bg-white/80 backdrop-blur-md border border-white/20 grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10"
+        class="mx-auto w-full max-w-5xl p-8  grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10"
       >
-        <div class="text-center col-span-full">
-          <h1 class="text-3xl font-bold text-blue-600 mb-2">FCardio</h1>
-          <p class="text-gray-500 text-sm">Registro Adicional de Información</p>
+        <div class=" col-span-full">
+          <p class="mb-4 text-blue-700" >
+            Bienvenido a <strong> FCardio</strong>,
+          </p>
+          <h1 class="text-4xl capitalize font-bold text-blue-600 mb-4">
+            {{user.user.name}}
+          </h1>
+          <p class="text-gray-700 text-md">
+            Por favor completa tu perfil médico para continuar
+          </p>
         </div>
   
         <div class="grid grid-cols-1 gap-6">
@@ -168,7 +173,7 @@
           </button>
         </div>
   
-        <div class="md:col-span-full text-center">
+        <!-- <div class="md:col-span-full text-center">
           <p class="text-sm text-gray-600">
             ¿Desesa regresar al inicio de sesión? 
             <RouterLink :to="{name: 'login'}" >
@@ -180,16 +185,23 @@
               </a>
             </RouterLink>
           </p>
-        </div>
+        </div> -->
       </form>
-    </main>
   </template>
 <script setup>
 import { ref } from 'vue';
+import useAuthStore from '@/stores/auth';
 import useMedicalProfileStore from '@/stores/medicalProfile';
 import router from '@/router';
+import { storeToRefs } from 'pinia';
 
-const { createMedicalProfile } = useMedicalProfileStore();
+const { 
+  createMedicalProfile 
+} = useMedicalProfileStore();
+
+const {
+  user
+} = storeToRefs(useAuthStore());
 
 const form = ref({
   birthdate: '',
