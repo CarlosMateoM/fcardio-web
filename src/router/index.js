@@ -13,6 +13,11 @@ const router = createRouter({
       name: 'register',
       component: () => import('../views/auth/RegisterView.vue'),
     },
+    {
+      path: '/medicalProfile',
+      name: 'medicalProfile',
+      component: () => import('../user/MedicalProfile.vue')
+    }
   ],
 })
 
